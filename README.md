@@ -1,1 +1,1 @@
-# moviePal
+# MoviePal
