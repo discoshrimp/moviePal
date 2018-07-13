@@ -1,56 +1,82 @@
 <!DOCTYPE html>
 <html>
-   <head>
-       <title>MoviePal Home</title>
-       <meta charset="utf-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-       <head>
-               
-               <meta charset="utf-8" />
-               <meta http-equiv="X-UA-Compatible" content="IE=edge">
-               <title>MoviePal Home</title>
-               <meta name="viewport" content="width=device-width, initial-scale=1">
-               <link rel="stylesheet" href="assets/css/reset.css">
-               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
-               <link rel="stylesheet" href="assets/CSS/MPstyle.css">
-           
-           </head>
-   </head>
-   <body>
 
-   <div id="bigThing">
-           <div class="uk-navbar-item searching">
-                   <form action="javascript:void(0)">
-                       <input class="uk-input uk-form-width-medium" id="searchBox" type="text" placeholder="Enter Movie Name">
-                       <button class="uk-button uk-button-default" id="searchButton">Search</button>
-                       <!--  <img src="MPLogo" width="100" />-->
-                   </form>
-               </div>
-               <div class="container">
-                   <div class="row">
-                       <div class="col-xs" id="posterBoy">
-                           
-                       </div>
-                   </div>
-               </div>
+<head>
+    <title>MoviePal Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-               <div class="container movieInfo">
-                   <h2 id="trueRating"><strong> True Rating : 87</h2></strong>
-                   <h3> <strong>Movie Details:</h3></strong>
-                   <p id="rating">Rating: R </p>
-                      <p id="budget"> Budget: $100million </p>
-                      <p id="revenue"> Revenue: $120 million </p>
-       
+    <head>
 
-                   </p>
-                   <h3> <strong>Ratings Breakdown:</h3></strong>
-                   <p id="rtScore">RottenTomatoes: 90% </p>
-                    <p id="imdbScore">  IMDB: 8.5/10 </p>
-                    <p id="mcScore">MetaCritic: 89/100</p>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>MoviePal Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.0-rc.6/css/uikit.min.css" />
+        <link rel="stylesheet" href="assets/CSS/MPstyle.css">
+        <link rel="stylesheet" href="assets/css/slider.css">
+
+    </head>
+</head>
+
+<body>
+
+    <div id="bigThing">
+        <div class="uk-navbar-item searching">
+            <form action="javascript:void(0)">
+                <input class="uk-input uk-form-width-medium" id="searchBox" type="text" placeholder="Enter Movie Name">
+                <button class="uk-button uk-button-default" id="searchButton">Search</button>
+                <!--  <img src="MPLogo" width="100" />-->
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs" id="posterBoy">
+
                 </div>
-               <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-               crossorigin="anonymous"></script>
-               <script src="assets/javascript/api.js"></script>
-               </div>
-   </body>
-   </html>
+            </div>
+        </div>
+
+        <div class="container movieInfo">
+            <!--Ratings Slider-->
+            <h1>Rating Slider</h1>
+
+            <h4>Critic score: 82, User score: 71</h4>
+
+            <div class="slidecontainer">
+                <input type="range" min="1" max="500" value="250" class="slider" id="myRange">
+                <p>
+                    <h3>Movie Pal Rating:
+                        <span id="rating"></span>
+                    </h3>
+                </p>
+            </div>
+            <h2 id="trueRating">
+                <strong>
+            </h2>
+            </strong>
+            <h3>
+                <strong>Movie Details:</h3>
+            </strong>
+            <p id="rating"></p>
+            <p id="budget"></p>
+            <p id="revenue"></p>
+
+
+            </p>
+            <h3>
+                <strong>Ratings Breakdown:</h3>
+            </strong>
+            <p id="rtScore"></p>
+            <p id="imdbScore"></p>
+            <p id="mcScore"></p>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+            <script src="assets/javascript/rating.js"></script>
+        <script src="assets/javascript/api.js"></script>
+    </div>
+</body>
+
+</html>

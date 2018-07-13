@@ -67,7 +67,7 @@ $(document).ready(function () {
 			omdbResponse.imdbId = omdbDataResponse.imdbID;
 			omdbResponse.imdbRating = omdbDataResponse.imdbRating;
 			omdbResponse.imdbVotes = omdbDataResponse.imdbVotes;
-			omdbResponse.metacritic = omdbDataResponse.Ratings[2].Value;
+			omdbResponse.metacritic = omdbDataResponse.Metascore;
 			omdbResponse.rottom = omdbDataResponse.Ratings[1].Value;
 
 			//movieDB ajax
@@ -81,35 +81,17 @@ $(document).ready(function () {
 				movieDBdata.voteAvg = movieDBresponse.vote_average;
 				movieDBdata.budget = movieDBresponse.budget;
 				movieDBdata.revenue = movieDBresponse.revenue;
-			})
-
 			$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
-			$("#trueRating").html("Our Rating: "+Placeholder);
-			$("#rating").html("Rated: "+ omdbResponse.rated);
-			$("#budget").html("Budget: " +parseInt(omdbResponse.budget));
-			$("#revenue").html("Revenue: "+parseInt(omdbResponse.revenue));
-			$("#rtScore").html("Rotten Tomatoes: "+parseInt(omdbResponse.rottom[1]));
+			//$("#trueRating").html("Our Rating: "+Placeholder);
+			$("#rating").html("Rated: " +omdbResponse.rated);
+			$("#budget").html("Budget: " +movieDBdata.budget);
+			$("#revenue").html("Revenue: " +movieDBdata.revenue);
+			$("#rtScore").html("Rotten Tomatoes: "+parseInt(omdbResponse.rottom));
 			$("#imdbScore").html("IMDB: "+omdbResponse.imdbRating);
 			$("mcScore").html("MetaCritic: "+omdbResponse.metacritic);
 			console.log(movieDBdata);
 			console.log(omdbResponse);
+			})
 		});
 	})
-
-	//Dan's Rating Code
-	var slideVal = 5;
-	var userScore = 71;
-	var criticScore = 82;
-	var minScore = Math.min(userScore, criticScore); // 71
-	var midScore = Math.ceil(Math.abs(userScore - criticScore)); // 11
-	var eachNotch = (midScore / 10); // 1.1
-	var initScore = Math.ceil(minScore + (midScore / 2)); // 76.5 --> 77
-	var slider = document.getElementById("myRange");
-	var output = document.getElementById("rating");
-	//output.innerHTML = slider.value;
-	output.innerHTML = initScore;
-	slider.oninput = function() {
-	  //output.innerHTML = this.value;
-	  output.innerHTML = (minScore + ((this.value - 1) * eachNotch));
-	}
 })
