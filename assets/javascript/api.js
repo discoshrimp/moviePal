@@ -37,7 +37,7 @@ $(document).ready(function () {
 	}
 	$("#searchButton").on("click", function (event) {
 
-		//-----------API CALLS-------------//	
+//-------------------------API CALLS--------------------------//	
 		searchTerm = $("#searchBox").val().trim();
 
 		var omdbData = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
@@ -75,7 +75,7 @@ $(document).ready(function () {
 			omdbResponse.metacritic = omdbDataResponse.Ratings[2].Value;
 			omdbResponse.rottom = omdbDataResponse.Ratings[1].Value;
 
-			//movieDB ajax
+			//movieDB
 			var movieDB = "https://api.themoviedb.org/3/movie/" + omdbResponse.imdbId + "?api_key=15f49e312d668cfea4632253c8087323&language=en-US";
 			$.ajax({
 				url: movieDB,
@@ -86,12 +86,12 @@ $(document).ready(function () {
 				movieDBdata.voteAvg = movieDBresponse.vote_average;
 				movieDBdata.budget = movieDBresponse.budget;
 				movieDBdata.revenue = movieDBresponse.revenue;
-				var mdb = movieDBdata.voteAvg
+
+				//------------------DATA TO HTML--------------------------//
 				$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
-				//$("#trueRating").html("Our Rating: "+Placeholder);
-				$("#rating").html("Rated: " + omdbResponse.rated);
-				$("#budget").html("Budget: " + movieDBdata.budget);
-				$("#revenue").html("Revenue: " + movieDBdata.revenue);
+				$("#mpaaRating").html("Rated: " + omdbResponse.rated);
+				$("#budget").html("Budget: $" + parseInt(movieDBdata.budget/1000000)+"M");
+				$("#revenue").html("Revenue: $" + parseInt(movieDBdata.revenue/1000000)+"M");
 				$("#rtScore").html("Rotten Tomatoes: " + parseInt(omdbResponse.rottom));
 				$("#imdbScore").html("IMDB: " + omdbResponse.imdbRating);
 				$("#mcScore").html("MetaCritic: " + omdbResponse.metacritic);
@@ -99,7 +99,7 @@ $(document).ready(function () {
 				console.log(omdbResponse);
 
 
-				//---------------Slider Code------------------------//	
+//-------------------------------Slider Code-------------------------------------------//	
 				var imdb = parseInt(omdbResponse.imdbRating*10);
 				var mdb = parseInt(movieDBdata.voteAvg*10);
 				var rt = parseInt(omdbResponse.rottom);
