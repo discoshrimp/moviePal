@@ -17,26 +17,23 @@ $(document).ready(function () {
 	var meta = str.split("/");
 	
 	meta = meta[0];
-	
-	userReview = (mdb * 0.65) + (imdb * 0.35)
-	
-	critReview = (rt * 0.4) + (imdb * 0.6)
 	*/
-	
-	var userScore = 71;
-	
-	var criticScore = 82;
-	
+	var userScore = (mdb * 0.65) + (imdb * 0.35);
+
+	var criticScore = (rt * 0.4) + (imdb * 0.6);
+	console.log(criticScore);
+	console.log(userScore);
+
 	var minScore = Math.min(userScore, criticScore);
-	
+
 	var midScore = Math.ceil(Math.abs(userScore - criticScore));
-	
+
 	var eachNotch = (midScore / 499);
-	
+
 	var initScore = Math.ceil(minScore + (midScore / 2));
-	
+
 	var slider = document.getElementById("myRange");
-	
+
 	var output = document.getElementById("rating");
 	//output.innerHTML = slider.value;
 	output.innerHTML = initScore;
@@ -45,4 +42,6 @@ $(document).ready(function () {
 		//output.innerHTML = this.value;
 		output.innerHTML = (minScore + ((this.value - 1) * eachNotch)).toFixed(1);
 	}
+	
+	$("#Score").html("Critic Score: "+criticScore+" User Score: "+userScore);
 })

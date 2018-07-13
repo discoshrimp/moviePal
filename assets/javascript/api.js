@@ -1,10 +1,12 @@
 var searchTerm = "";
 $(document).ready(function () {
+	function clearForm() {
+		$("#searchBox").val("")
+	}
 	$("#searchButton").on("click", function (event) {
 		searchTerm = $("#searchBox").val().trim();
 
 		var omdbData = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
-
 		var omdbResponse = {
 			"title": [],
 			"year": [],
@@ -26,15 +28,15 @@ $(document).ready(function () {
 			"imdbId:": [],
 			"imdbRating": [],
 			"imdbVotes": [],
-			"metacritic":[],
-			"rottom":[],
+			"metacritic": [],
+			"rottom": [],
 		}
 
 		var movieDBdata = {
 			"voteAvg": 0,
 			"voters": 0,
-			"revenue":0,
-			"budget":0,
+			"revenue": 0,
+			"budget": 0,
 		}
 		event.preventDefault();
 		console.log("click success!");
@@ -67,9 +69,11 @@ $(document).ready(function () {
 			omdbResponse.imdbId = omdbDataResponse.imdbID;
 			omdbResponse.imdbRating = omdbDataResponse.imdbRating;
 			omdbResponse.imdbVotes = omdbDataResponse.imdbVotes;
-			omdbResponse.metacritic = omdbDataResponse.Metascore;
+			omdbResponse.metacritic = omdbDataResponse.Ratings[2].Value;
 			omdbResponse.rottom = omdbDataResponse.Ratings[1].Value;
-
+			var imdb = omdbResponse.imdbRating * 10;
+			var rt = parseInt(omdbResponse.rottom);
+			var meta = omdbResponse.metacritic;
 			//movieDB ajax
 			var movieDB = "https://api.themoviedb.org/3/movie/" + omdbResponse.imdbId + "?api_key=15f49e312d668cfea4632253c8087323&language=en-US";
 			$.ajax({
@@ -81,17 +85,19 @@ $(document).ready(function () {
 				movieDBdata.voteAvg = movieDBresponse.vote_average;
 				movieDBdata.budget = movieDBresponse.budget;
 				movieDBdata.revenue = movieDBresponse.revenue;
-			$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
-			//$("#trueRating").html("Our Rating: "+Placeholder);
-			$("#rating").html("Rated: " +omdbResponse.rated);
-			$("#budget").html("Budget: " +movieDBdata.budget);
-			$("#revenue").html("Revenue: " +movieDBdata.revenue);
-			$("#rtScore").html("Rotten Tomatoes: "+parseInt(omdbResponse.rottom));
-			$("#imdbScore").html("IMDB: "+omdbResponse.imdbRating);
-			$("mcScore").html("MetaCritic: "+omdbResponse.metacritic);
-			console.log(movieDBdata);
-			console.log(omdbResponse);
-			})
+				var mdb = movieDBdata.voteAvg
+				$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
+				//$("#trueRating").html("Our Rating: "+Placeholder);
+				$("#rating").html("Rated: " + omdbResponse.rated);
+				$("#budget").html("Budget: " + movieDBdata.budget);
+				$("#revenue").html("Revenue: " + movieDBdata.revenue);
+				$("#rtScore").html("Rotten Tomatoes: " + parseInt(omdbResponse.rottom));
+				$("#imdbScore").html("IMDB: " + omdbResponse.imdbRating);
+				$("#mcScore").html("MetaCritic: " + omdbResponse.metacritic);
+				console.log(movieDBdata);
+				console.log(omdbResponse);
+			});
 		});
+		clearForm()
 	})
 })
