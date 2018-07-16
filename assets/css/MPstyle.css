@@ -15,6 +15,12 @@
     background-color:#FFC107;
     border-color:#FFFFFF;
  }
+ .posterHouse img{
+    height:70%;
+    width:70%;
+    margin-top: 45px;
+}
+
  
  /* .movieInfo {
     color:#607D8B;
