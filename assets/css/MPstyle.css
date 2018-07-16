@@ -22,9 +22,7 @@
  
  /* NOTHING else in container, floating element in space and giving it precedence? */
  
- #posterBoy {
-    float:left;
- }
+
  
  body {
     background-color:#212121;
@@ -38,6 +36,32 @@
  h2 {
     color:#FFC107;
  }
+/*Added 7/16 to get colors working for dynamic content*/
+ #titleScore {
+     color:#FFC107;
+ }
 
+ #rating {
+    color:#FFFFFF;
+ }
+
+ #questionMP {
+    color:#FFC107;
+    text-align:center;
+ }
+
+#threatMP {
+     text-align:center;
+ }
+ #explainMP{
+    text-align:center;
+}
+
+
+.posterHouse img{
+    height:70%;
+    width:70%;
+
+}
 
 /*Dan's Rating Slider Styling*/

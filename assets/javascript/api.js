@@ -1,5 +1,5 @@
 var searchTerm = "";
-
+//-------------Global Objects to be assigned values in function------------------//
 var omdbResponse = {
 	"title": [],
 	"year": [],
@@ -51,7 +51,7 @@ $(document).ready(function () {
 			method: "GET"
 		}).then(function (omdbDataResponse) {
 			console.log(omdbDataResponse);
-			//return omdbResponse;
+			//assign omdbDataResponse to omdbResponse for global use;
 			omdbResponse.title = omdbDataResponse.Title;
 			omdbResponse.year = omdbDataResponse.Year;
 			omdbResponse.rated = omdbDataResponse.Rated;
@@ -82,12 +82,23 @@ $(document).ready(function () {
 				method: "GET"
 			}).then(function (movieDBresponse) {
 				console.log(movieDBresponse);
+				//assign need moviedb responses to global movieDBdata objects
 				movieDBdata.voters = movieDBresponse.vote_count;
 				movieDBdata.voteAvg = movieDBresponse.vote_average;
 				movieDBdata.budget = movieDBresponse.budget;
 				movieDBdata.revenue = movieDBresponse.revenue;
 
 				//------------------DATA TO HTML--------------------------//
+				// adding dynamic insertion of titles
+				$("#titleScore").text("MoviePal Score:");
+				$("#titleDetails").text("Movie Details:");
+				$("#titleBreakdown").text("Ratings Breakdown:");
+				$("#questionMP").text("What is a 'MoviePal Score'?");
+				$("#explainMP").text("The MoviePal score comes from a SUPER SECRET algorithm which includes ratings & reviews from RottenTomatoes, MetaCritic, IMDB, and general moviegoers.");
+				$("#threatMP").text("We would explain more, but your head may explode, and we don't want to be held liable.");
+				// End New Stuff
+
+				
 				$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
 				$("#mpaaRating").html("Rated: " + omdbResponse.rated);
 				$("#budget").html("Budget: $" + parseInt(movieDBdata.budget/1000000)+"M");
