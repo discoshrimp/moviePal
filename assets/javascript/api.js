@@ -41,7 +41,7 @@ $(document).ready(function () {
 		slideReset();
 		//-------------------------API CALLS--------------------------//    
 		searchTerm = $("#searchBox").val().trim();
-		var omdbData = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
+		var omdbData = "https://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
 		event.preventDefault();
 		console.log("click success!");
 		console.log(searchTerm);
