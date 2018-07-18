@@ -34,7 +34,11 @@ $(document).ready(function () {
 	function clearForm() {
 		$("#searchBox").val("")
 	}
+	function slideReset(){
+		$("#myRange").val(250);
+	}
 	$("#searchButton").on("click", function (event) {
+		slideReset();
 		//-------------------------API CALLS--------------------------//    
 		searchTerm = $("#searchBox").val().trim();
 		var omdbData = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
