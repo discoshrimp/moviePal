@@ -24,7 +24,6 @@ var omdbResponse = {
 	"metacritic": [],
 	"rottom": [],
 }
-
 var movieDBdata = {
 	"voteAvg": 0,
 	"voters": 0,
@@ -36,16 +35,12 @@ $(document).ready(function () {
 		$("#searchBox").val("")
 	}
 	$("#searchButton").on("click", function (event) {
-
-//-------------------------API CALLS--------------------------//	
+		//-------------------------API CALLS--------------------------//    
 		searchTerm = $("#searchBox").val().trim();
-
 		var omdbData = "http://www.omdbapi.com/?t=" + searchTerm + "&apikey=3efbbefc";
-
 		event.preventDefault();
 		console.log("click success!");
 		console.log(searchTerm);
-
 		$.ajax({
 			url: omdbData,
 			method: "GET"
@@ -74,7 +69,6 @@ $(document).ready(function () {
 			omdbResponse.imdbVotes = omdbDataResponse.imdbVotes;
 			omdbResponse.metacritic = omdbDataResponse.Ratings[2].Value;
 			omdbResponse.rottom = omdbDataResponse.Ratings[1].Value;
-
 			//movieDB
 			var movieDB = "https://api.themoviedb.org/3/movie/" + omdbResponse.imdbId + "?api_key=15f49e312d668cfea4632253c8087323&language=en-US";
 			$.ajax({
@@ -87,7 +81,6 @@ $(document).ready(function () {
 				movieDBdata.voteAvg = movieDBresponse.vote_average;
 				movieDBdata.budget = movieDBresponse.budget;
 				movieDBdata.revenue = movieDBresponse.revenue;
-
 				//------------------DATA TO HTML--------------------------//
 				// adding dynamic insertion of titles
 				$("#titleScore").text("MoviePal Score:");
@@ -98,21 +91,18 @@ $(document).ready(function () {
 				$("#threatMP").text("We would explain more, but your head may explode, and we don't want to be held liable.");
 				// End New Stuff
 
-				
-				$("#posterBoy").html("<img src='" + omdbResponse.poster + "'/>");
+				$("#posterBoy").html("<img class = 'uk-align-center' src='" + omdbResponse.poster + "'/>");
 				$("#mpaaRating").html("Rated: " + omdbResponse.rated);
-				$("#budget").html("Budget: $" + parseInt(movieDBdata.budget/1000000)+"M");
-				$("#revenue").html("Revenue: $" + parseInt(movieDBdata.revenue/1000000)+"M");
+				$("#budget").html("Budget: $" + parseInt(movieDBdata.budget / 1000000) + "M");
+				$("#revenue").html("Revenue: $" + parseInt(movieDBdata.revenue / 1000000) + "M");
 				$("#rtScore").html("Rotten Tomatoes: " + parseInt(omdbResponse.rottom));
 				$("#imdbScore").html("IMDB: " + omdbResponse.imdbRating);
 				$("#mcScore").html("MetaCritic: " + omdbResponse.metacritic);
 				console.log(movieDBdata);
 				console.log(omdbResponse);
-
-
-//-------------------------------Slider Code-------------------------------------------//	
-				var imdb = parseInt(omdbResponse.imdbRating*10);
-				var mdb = parseInt(movieDBdata.voteAvg*10);
+				//-------------------------------Slider Code-------------------------------------------//   
+				var imdb = parseInt(omdbResponse.imdbRating * 10);
+				var mdb = parseInt(movieDBdata.voteAvg * 10);
 				var rt = parseInt(omdbResponse.rottom);
 				var meta = parseInt(omdbResponse.metacritic);
 				console.log(imdb);
@@ -123,28 +113,37 @@ $(document).ready(function () {
 				var userScore = (mdb * 0.65) + (imdb * 0.35);
 				console.log(criticScore);
 				console.log(userScore);
-
 				var minScore = Math.min(userScore, criticScore);
-
 				var midScore = Math.ceil(Math.abs(userScore - criticScore));
-
 				var eachNotch = (midScore / 499);
-
 				var initScore = Math.ceil(minScore + (midScore / 2));
-
 				var slider = document.getElementById("myRange");
-
 				var output = document.getElementById("rating");
 				//output.innerHTML = slider.value;
 				output.innerHTML = initScore;
-
 				slider.oninput = function () {
 					//output.innerHTML = this.value;
 					output.innerHTML = (minScore + ((this.value - 1) * eachNotch)).toFixed(1);
 				}
-
 				$("#Score").html("Critic Score: " + criticScore + "<br> Viewer Score: " + userScore);
+				console.log(criticScore)
+				console.log(userScore)
+				var criticScoreHigher = $("<h3 style='float: right'<bold>Critic Reviews</bold></h3>")
+				var userScoreHigher = $("<h3 style='float: right'<bold>User Reviews</bold></h3>")
+				var criticScoreLower = $("<h3 style='float: left'<bold>Critic Reviews</bold></h3>")
+				var userScoreLower = $("<h3 style='float: left'<bold>User Reviews</bold></h3>")
+				if (userScore > criticScore) {
+					$("#leftSide").html(criticScoreLower)
+					$("#rightSide").html(userScoreHigher)
 
+				} else if (criticScore > userScore) {
+					$("#rightSide").html(criticScoreHigher)
+					$("#leftSide").html(userScoreLower)
+
+				} else {
+					$("#leftSide").html(criticScoreLower)
+					$("#rightSide").html(userScoreHigher)
+				}
 			});
 		});
 		clearForm()

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html>
-
 <head>
    <title>MoviePal Home</title>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-
    <head>
        <meta charset="utf-8" />
        <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +15,6 @@
        <link rel="stylesheet" href="assets/css/slider.css">
    </head>
 </head>
-
 <body>
    <div class="uk-container page-wrapper">
        <div class="uk-navbar-item searching">
@@ -27,33 +24,25 @@
                <!--  <img src="MPLogo" width="100" />-->
            </form>
        </div>
-
    
        <div class="uk-container movieInfo">
-
            <div class="uk-grid">
                <div class="uk-width-1-2 posterHouse">
                    <div id="posterBoy"></div>
                </div>
                <div class="uk-width-1-2">
-
                    <p>
                        <!-- adding ID's for headers, dynamically generate-->
                        <h2 id="titleScore"> </h2>
                        <h2 id="rating"></h2>
-
                    </p>
-
                    <!-- adding ID's for headers, dynamically generate-->
                    <h2 id="titleDetails"></h2>
-
                    <p id="mpaaRating"></p>
                    <p id="budget"></p>
                    <p id="revenue"></p>
-
                    <!-- adding ID's for headers, dynamically generate-->
                    <h2 id="titleBreakdown"></h2>
-
                    <p id="rtScore"></p>
                    <p id="imdbScore"></p>
                    <p id="mcScore"></p>
@@ -65,26 +54,22 @@
            <p id="explainMP"></p>
            <p id="threatMP"></p>
            <!--end new stuff add-->
-
            <div class="slidecontainer">
                <input type="range" min="1" max="500" value="250" class="slider" id="myRange">
-
            </div>
-
            <div class = "uk-container">
-               <div class = "uk-grid">
-                   <div class = "uk-width-1-2">
-                       <h3 style="float: left"><bold>User Reviews</bold></h3>
-                   </div>
-                   <div class = "uk-width-1-2">
-                       <h3 style="float: right"><bold>Critic Reviews</bold></h3>
-                   </div>
-               </div>
+                <div class = "uk-grid">
+                    <div id = "leftSide" class = "uk-width-1-2">
+                        
+                    </div>
+                    <div id = "rightSide" class = "uk-width-1-2">
+                        
+                    </div>
+                </div>
+               
            </div>
-
            <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                crossorigin="anonymous"></script>
            <script src="assets/javascript/api.js"></script>
 </body>
-
 </html>
